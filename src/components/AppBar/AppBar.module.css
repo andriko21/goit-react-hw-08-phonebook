@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  /* margin-left: auto; */
+  align-items: center;
+}
+
+.nav__link {
+  padding: 5px 15px;
+  color: black;
+  text-decoration: none;
+  border: 3px solid aqua;
+  border-radius: 20px;
+  background-color: rgb(164, 255, 255);
+  margin-right: 8px;
+  transition-duration: 0.39s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav__link:hover {
+  background-color: aqua;
+}
+
+.nav__activeLink {
+  background-color: aqua;
+}

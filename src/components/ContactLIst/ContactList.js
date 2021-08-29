@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import style from "./ContactList.module.css";
 import { useDispatch } from "react-redux";
-import { removeContact } from "../../redux/contacts/contacts-actions";
+// import { removeContact } from "../../redux/contacts/contacts-actions";
 import * as contactsOperations from '../../redux/contacts/contacts-operations'
 import { getVisibleItems, getLoading } from "../../redux/contacts/contacts-selectors";
 
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
   return {
     itemsRender: getVisibleItems(state),
   };
-
+ 
 };
 
 const mapDispatchToProps = (dispatch) => ({

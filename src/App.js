@@ -1,28 +1,21 @@
 import React from "react";
+import ContactsViev from "./vievs/contactsViev";
+import { Switch, Route } from "react-router-dom";
+import AppBar from "./components/AppBar/AppBar";
+import LoginViev from "./vievs/loginViev";
+import RegisterViev from "./vievs/registerViev";
+import HomeViev from "./vievs/homeViev";
 
-import Form from "./components/Form/Form";
-import ContactList from "./components/ContactLIst/ContactList";
-import Filter from "./components/Filter/Filter";
 const App = () => {
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("contacts")) {
-  //     setContacts(JSON.parse(localStorage.getItem("contacts")));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   try {
-  //     localStorage.setItem("contacts", JSON.stringify(contacts));
-  //   } catch {
-  //     throw new Error();
-  //   }
-  // }, [contacts]);
   return (
     <>
-      <Form />
-      <Filter />
-      <ContactList />
+      <AppBar />
+      <Switch>
+        <Route path="/" exact component={HomeViev} />
+        <Route path="/contacts" component={ContactsViev} />
+        <Route path="/login" component={LoginViev} />
+        <Route path="/register" component={RegisterViev} />
+      </Switch>
     </>
   );
 };

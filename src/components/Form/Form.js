@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import style from "./Form.module.css";
-import { addContact } from "../../redux/contacts/contacts-actions.js"
+// import { addContact } from "../../redux/contacts/contacts-actions.js"
 import { connect } from 'react-redux'
 import { getItemsRender } from "../../redux/contacts/contacts-selectors";
 import { fetchAddContacts } from "../../redux/contacts/contacts-operations";
@@ -53,9 +53,9 @@ const Form = ({ contacts, addContactItem }) => {
 
   return (
     <div className={style.container}>
-      <h1>Phonebook</h1>
+      <h1>Книга контактів</h1>
       <div className={style.addContact__container}>
-        <h2>Name</h2>
+        <h2>Ім'я</h2>
         <form className={style.form} onSubmit={onSubmit}>
           <input
             className={style.input}
@@ -67,7 +67,7 @@ const Form = ({ contacts, addContactItem }) => {
             required
             onChange={onCHangeInput}
           />
-          <h3>Number</h3>
+          <h2>Номер телефону</h2>
           <input
             className={style.input}
             type="tel"
@@ -79,7 +79,7 @@ const Form = ({ contacts, addContactItem }) => {
             onChange={onCHangeInput}
           />
           <button type="submit" className={style.button}>
-            add contact
+            Додати
           </button>
         </form>
       </div>
