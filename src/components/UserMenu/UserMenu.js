@@ -10,7 +10,7 @@ const UserMenu = () => {
     return (
          <div className={styles.box}>
         <span className={styles.user_name}>Welcome,  {name}</span>
-        <button type="button" onClick={()=>dispath(authOperations.logOut)} className={styles.user_button}>
+        <button type="button" onClick={()=>dispath(authOperations.logOut())} className={styles.user_button}>
           Вийти
         </button>
       </div>

@@ -32,7 +32,6 @@ const ContactList = ({ itemsRender, deleteItem }) => {
             </li>
           ))}
         </ul>
-        {console.log(loading)}
       </div> : loading ? <h3>Loading...</h3>: <div className={style.nothing_search}>Nothing to search 🙆‍♂️</div>}
       </>
   )
