@@ -8,6 +8,7 @@ const initialState = {
   },
   token: null,
   isLoaggedIn: false,
+  loader: false
 };
 
 const authSlice = createSlice({
@@ -29,10 +30,19 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoaggedIn = null;
     },
+    [fetchCurrUser.pending](state)  {
+      state.loader = true
+    },
     [fetchCurrUser.fulfilled](state, { payload }) {
       state.user =  payload ;
       state.isLoaggedIn = true;
+      state.loader = false
+
     },
+    [fetchCurrUser.rejected](state) {
+      state.loader = false
+      
+    }
   },
 });
 

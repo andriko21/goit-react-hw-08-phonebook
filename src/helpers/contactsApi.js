@@ -1,19 +1,20 @@
 import axios from "axios";
-const BASE = "http://localhost:3030/contacts";
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
 
 export const getContacts = async () => {
   try {
-    const getObject = await axios.get(`${BASE}`)
-    return getObject.data;
+    const {data} = await axios.get('/contacts')
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const addContacts = async (data) => {
+export const addContacts = async (userDocs) => {
   try {
-    const getObject = await axios.post(`${BASE}/`, data)
-    return getObject.data;
+    const {data} = await axios.post(`/contacts`, userDocs)
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -22,8 +23,8 @@ export const addContacts = async (data) => {
 
 export const removeContacts = async (id) => {
   try {
-    const getObject = await axios.delete(`${BASE}/${id}`)
-    return getObject.data;
+    const {data} = await axios.delete(`/contacts/${id}`)
+    return data;
   } catch (error) {
     console.log(error);
   }

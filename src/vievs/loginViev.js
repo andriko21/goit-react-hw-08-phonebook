@@ -100,9 +100,10 @@ const LoginViev = () => {
           Увійти
         </button>: <button type="submit" style={styles.login_button} disabled>
           Увійти
-        </button>}
-  
+        </button>}  
       </form>
+        <h3>Увійдіть щоб отримати доступ до контактів</h3>
+
     </div>
   );
 };

@@ -1,29 +1,46 @@
-import React, { useEffect } from "react";
-import ContactsViev from "./vievs/contactsViev";
-import { Switch, Route } from "react-router-dom";
+import React, { lazy, Suspense, useEffect } from "react";
+import { Switch } from "react-router-dom";
 import AppBar from "./components/AppBar/AppBar";
-import LoginViev from "./vievs/loginViev";
-import RegisterViev from "./vievs/registerViev";
-import HomeViev from "./vievs/homeViev";
 import { fetchCurrUser } from "./redux/auth/auth-operations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+const LoginViev = lazy(() => import("./vievs/loginViev"));
+const RegisterViev = lazy(() => import("./vievs/registerViev"));
+const HomeViev = lazy(() => import("./vievs/homeViev"));
+const ContactsViev = lazy(() => import("./vievs/contactsViev"));
 
 const App = () => {
-  const dispatch = useDispatch(); 
+  const isLoading = useSelector((state) => state.auth.loader);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrUser());
   }, [dispatch]);
-  return (
-    <>
-      <AppBar />
-      <Switch>
-        <Route path="/" exact component={HomeViev} />
-        <Route path="/contacts" component={ContactsViev} />
-        <Route path="/login" component={LoginViev} />
-        <Route path="/register" component={RegisterViev} />
-      </Switch>
-    </>
-  );
+  return isLoading === true ? (<h3>Почекай зараз все буде...</h3>):(
+      <>
+        <AppBar />
+        <Switch>
+          <Suspense fallback={<p>Загружаємо...</p>}>
+            <PublicRoute exact path="/">
+              <HomeViev />
+            </PublicRoute>
+
+            <PublicRoute exact path="/login" restricted>
+              <LoginViev />
+            </PublicRoute>
+
+            <PublicRoute exact path="/register" restricted>
+              <RegisterViev />
+            </PublicRoute>
+
+            <PrivateRoute exact path="/contacts">
+              <ContactsViev />
+            </PrivateRoute>
+          </Suspense>
+        </Switch>
+      </>
+    )
+  
 };
 export default App;
